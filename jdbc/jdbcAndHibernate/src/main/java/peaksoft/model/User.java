@@ -1,18 +1,27 @@
 package peaksoft.model;
 
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
-@Table
+@Entity
+@Table(name = "users")
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class User {
     @Id
+    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.SEQUENCE, generator = "user_gen")
+    @jakarta.persistence.SequenceGenerator(name = "user_gen",
+            sequenceName = "user_seq", allocationSize = 1)
     private Long id;
-
-    @Column
+    @Column(name="name")
     private String name;
-
-    @Column
+    @Column(name="lastName")
     private String lastName;
-
     @Column
     private Byte age;
 
